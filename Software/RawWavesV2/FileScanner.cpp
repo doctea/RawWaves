@@ -152,7 +152,10 @@ void FileScanner::scanDirectory(File* dir) {
 		if (currentFile.isDirectory()) {
 			// Ignore OSX Spotlight and Trash Directories
 			if (currentFilename.startsWith("SPOTL") == 0
-					&& currentFilename.startsWith("TRASH") == 0) {
+					&& currentFilename.startsWith("TRASH") == 0
+          && currentFilename.startsWith("System") == 0
+          && currentFilename.startsWith("banks") == 0          
+          ) {
 				currentDirectory = currentFilename;
 				scanDirectory(&currentFile);
 			}

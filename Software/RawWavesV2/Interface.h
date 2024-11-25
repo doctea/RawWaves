@@ -7,6 +7,8 @@
 #include "Settings.h"
 #include "AnalogInput.h"
 
+using Button = Bounce2::Button;
+
 #define CHAN_POT_PIN A0 	// pin for Station pot (aka Channel pot), was A9 in Teensy 3.2 version
 #define CHAN_CV_PIN A1 		// pin for Station CV (aka Channel CV), was A6 in Teensy 3.2 version
 #define TIME_POT_PIN A5 	// pin for Start pot (aka Time pot), was A7 in Teensy 3.2 version

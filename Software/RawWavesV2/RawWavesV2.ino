@@ -21,11 +21,6 @@
  MOSI 11
  SS   10
  
- NB: Compile using modified versions of: 
- SD.cpp (found in the main Arduino package) 
- play_sd_raw.cpp  - In Teensy Audio Library 
- play_sc_raw.h    - In Teensy Audio Library 
-
  */
 #include <EEPROM.h>
 #include <SPI.h>
@@ -51,6 +46,9 @@
 		// #include "AnalogInput.h"
 #include "PlayState.h"
 
+//#define DEBUG_STARTUP
+//#define DEBUG
+
 #ifdef DEBUG
 #define D(x) x
 #else
@@ -61,6 +59,7 @@
 
 #define FLASHTIME 	10  	// How long do LEDs flash for?
 #define SD_CARD_CHECK_DELAY 20
+
 
 // //////////
 // TIMERS
@@ -208,6 +207,10 @@ void loop() {
 	updateInterfaceAndDisplay();
 
 	audioEngine.update();
+
+  /*if (millis()%1000<10) {
+    audioEngine.currentPlayer->offset();
+  }*/
 
 	if(audioEngine.error) {
 		// Too many read errors, reboot
