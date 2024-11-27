@@ -3,6 +3,8 @@
 
 #include "RawWaves.h"
 
+#include "AnalogInput.h"
+
 #ifdef DEBUG_ENGINE
 #define D(x) x
 #else
@@ -149,6 +151,7 @@ void AudioEngine::changeTo(AudioFileInfo* fileInfo, unsigned long start) {
 	if(settings->hardSwap) {
 		// If we allow all audio file types then no crossfades, just hard
 		// cut from one to the next
+		D(Serial.print("hardSwap!"));
 		AudioNoInterrupts();
 		currentPlayer->playFrom(currentFileInfo);   // change audio
 		previousPlayer->stop();
@@ -209,7 +212,7 @@ void AudioEngine::setPlaybackSpeed(float speed) {
 void AudioEngine::skipTo(uint32_t pos) {
 	// In the original Radio Music, with Teensy 3.2, pos was expected from 0 -> 8192, since the ADC_BITS was 13
 	// The Teensy 4 has ADC_BITS of 10. Thus we change this to 0 -> 1024
-	uint32_t samplePos = ((float)pos / 1024.0) * (currentFileInfo->size / currentFileInfo->getBytesPerSample());
+	uint32_t samplePos = ((float)pos / (float)ADC_MAX_VALUE) * (currentFileInfo->size / currentFileInfo->getBytesPerSample());
 	D(
 		Serial.print("AE: Skip To ");
 		Serial.println(samplePos);

@@ -5,7 +5,7 @@
 //#define DEBUG
 //#define DEBUG_STARTUP // Pauses module startup until serial connection is made
 //#define DEBUG_SETTINGS
-//#define DEBUG_INTERFACE  was doing this before settings
+//#define DEBUG_INTERFACE  //was doing this before settings
 //#define DEBUG_WAV
 //#define DEBUG_ENGINE
 //#define DEBUG_FILES
